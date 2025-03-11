@@ -70,36 +70,33 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            width: 100vw;
+            height: 100vh;
+            background-color: #e8e4d9;
             justify-content: center;
             align-items: center;
+            padding: 5vw;
+            box-sizing: border-box;
         }
         .fullscreen-container {
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
         }
         .fullscreen-image {
-            max-width: 80vw;
-            max-height: 80vh;
-            border: 6px solid #b8b2a5;
+            max-width: 90%;
+            max-height: 90%;
         }
         .image-details {
             position: absolute;
-            bottom: 0;
-            left: calc(100% + 20px);
-            width: 300px;
-            height: 300px;
-            background: #e8e4d9;
-            color: #444;
-            padding: 20px;
-            border: 3px solid #b8b2a5;
-            text-align: left;
-            display: none;
+            bottom: 5vw;
+            right: 5vw;
+            background: none;
+            color: #222;
+            text-align: right;
             font-family: 'Akzidenz-Grotesk', sans-serif;
         }
         .image-details h3 {
@@ -118,25 +115,33 @@
             font-weight: 600;
             color: #444;
         }
-        .nav-button {
+        .nav-buttons {
             position: absolute;
-            background: #e8e4d9;
-            border: 3px solid #b8b2a5;
-            color: #222;
-            padding: 10px 15px;
-            font-size: 24px;
-            cursor: pointer;
-            user-select: none;
+            top: 5vw;
+            right: 5vw;
+            display: flex;
+            gap: 15px;
         }
-        .prev-button { left: 10vw; }
-        .next-button { right: 10vw; }
+        .nav-button {
+            background: #222;
+            color: #e8e4d9;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: 'Akzidenz-Grotesk', sans-serif;
+        }
     </style>
     <script>
         let images = [];
         let currentIndex = 0;
 
-        function openFullscreen(imgSrc, title, lens, body, notes, index) {
-            document.getElementById('fullscreenImg').src = imgSrc;
+        function openFullscreen(imgSrc, title, lens, body, notes, index, aspect) {
+            const img = document.getElementById('fullscreenImg');
+            img.src = imgSrc;
+            img.style.objectFit = 'contain';
+            img.style.alignSelf = aspect === 'portrait' ? 'center' : 'flex-start';
+            
             document.getElementById('imageDetails').innerHTML = `
                 <h3>${title}</h3>
                 <p><span>lens:</span> ${lens}</p>
@@ -144,13 +149,11 @@
                 <p><span>notes:</span> ${notes}</p>
             `;
             document.getElementById('fullscreenOverlay').style.display = 'flex';
-            document.getElementById('imageDetails').style.display = 'block';
             currentIndex = index;
         }
 
         function closeFullscreen() {
             document.getElementById('fullscreenOverlay').style.display = 'none';
-            document.getElementById('imageDetails').style.display = 'none';
         }
     </script>
 </head>
@@ -159,18 +162,19 @@
     <div class="gallery-container">
         <div class="subheader">subheader zero</div>
         <div class="gallery">
-            <img src="./images/463C0464.JPG" alt="Details about this image." onclick="openFullscreen(this.src, 'Placeholder Title', '50mm f/1.8', 'Canon EOS R5', 'Example notes', 0)">
-            <div class="placeholder">Placeholder</div>
-            <div class="placeholder">Placeholder</div>
-            <div class="placeholder">Placeholder</div>
+            <img src="./images/463C0464.JPG" alt="Details about this image." onclick="openFullscreen(this.src, 'Placeholder Title', '50mm f/1.8', 'Canon EOS R5', 'Example notes', 0, 'landscape')">
+            <div class="placeholder" onclick="openFullscreen('', 'Placeholder Title', '85mm f/1.4', 'Sony A7R IV', 'Example notes', 1, 'portrait')">Placeholder</div>
+            <div class="placeholder" onclick="openFullscreen('', 'Placeholder Title', '35mm f/2', 'Leica M10', 'Example notes', 2, 'landscape')">Placeholder</div>
+            <div class="placeholder" onclick="openFullscreen('', 'Placeholder Title', '24mm f/1.4', 'Nikon Z7', 'Example notes', 3, 'square')">Placeholder</div>
         </div>
     </div>
     <div id="fullscreenOverlay" class="fullscreen-overlay">
         <div class="fullscreen-container">
-            <button class="nav-button prev-button" onclick="navigateImage(-1); event.stopPropagation();">&#10094;</button>
+            <div class="nav-buttons">
+                <button class="nav-button" onclick="closeFullscreen()">Close</button>
+            </div>
             <img id="fullscreenImg" class="fullscreen-image">
-            <button class="nav-button next-button" onclick="navigateImage(1); event.stopPropagation();">&#10095;</button>
-            <div id="imageDetails" class="image-details">Image details placeholder</div>
+            <div id="imageDetails" class="image-details"></div>
         </div>
     </div>
 </body>
