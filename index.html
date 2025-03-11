@@ -6,7 +6,7 @@
     <title>rory.works</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Monofett&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Akzidenz-Grotesk&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Akzidenz-Grotesk:wght@400;600&display=swap');
         
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -90,15 +90,32 @@
         }
         .image-details {
             position: absolute;
-            bottom: 5vh;
-            left: calc(50% + 250px);
+            bottom: 0;
+            left: calc(100% + 20px);
             background: #e8e4d9;
-            color: #222;
-            padding: 15px;
+            color: #444;
+            padding: 20px;
             border: 3px solid #b8b2a5;
             text-align: left;
             max-width: 300px;
             display: none;
+            font-family: 'Akzidenz-Grotesk', sans-serif;
+        }
+        .image-details h3 {
+            font-weight: 600;
+            font-size: 18px;
+            margin: 0 0 10px;
+            color: #333;
+        }
+        .image-details p {
+            font-weight: 400;
+            font-size: 14px;
+            margin: 5px 0;
+            color: #666;
+        }
+        .image-details span {
+            font-weight: 600;
+            color: #444;
         }
         .nav-button {
             position: absolute;
@@ -117,9 +134,14 @@
         let images = [];
         let currentIndex = 0;
 
-        function openFullscreen(imgSrc, details, index) {
+        function openFullscreen(imgSrc, title, lens, body, notes, index) {
             document.getElementById('fullscreenImg').src = imgSrc;
-            document.getElementById('imageDetails').innerText = details;
+            document.getElementById('imageDetails').innerHTML = `
+                <h3>${title}</h3>
+                <p><span>lens:</span> ${lens}</p>
+                <p><span>body:</span> ${body}</p>
+                <p><span>notes:</span> ${notes}</p>
+            `;
             document.getElementById('fullscreenOverlay').style.display = 'flex';
             document.getElementById('imageDetails').style.display = 'block';
             currentIndex = index;
@@ -137,33 +159,18 @@
             } else if (currentIndex >= images.length) {
                 currentIndex = 0;
             }
-            openFullscreen(images[currentIndex].src, images[currentIndex].details, currentIndex);
+            openFullscreen(images[currentIndex].src, images[currentIndex].title, images[currentIndex].lens, images[currentIndex].body, images[currentIndex].notes, currentIndex);
         }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            images = Array.from(document.querySelectorAll(".gallery img")).map((img, index) => {
-                return { src: img.src, details: img.alt, index };
-            });
-        });
     </script>
 </head>
 <body>
     <header>rory.works</header>
-    <div class="gallery-container">
-        <div class="subheader">subheader zero</div>
-        <div class="gallery">
-            <img src="./images/463C0464.JPG" alt="Details about this image." onclick="openFullscreen(this.src, this.alt, 0)">
-            <img src="./images/placeholder.jpg" alt="Details about this placeholder." onclick="openFullscreen(this.src, this.alt, 1)">
-            <img src="./images/placeholder.jpg" alt="Details about this placeholder." onclick="openFullscreen(this.src, this.alt, 2)">
-            <img src="./images/placeholder.jpg" alt="Details about this placeholder." onclick="openFullscreen(this.src, this.alt, 3)">
-        </div>
-    </div>
     <div id="fullscreenOverlay" class="fullscreen-overlay">
         <div class="fullscreen-container">
             <button class="nav-button prev-button" onclick="navigateImage(-1); event.stopPropagation();">&#10094;</button>
             <img id="fullscreenImg" class="fullscreen-image">
             <button class="nav-button next-button" onclick="navigateImage(1); event.stopPropagation();">&#10095;</button>
-            <div id="imageDetails" class="image-details">Image details placeholder</div>
+            <div id="imageDetails" class="image-details"></div>
         </div>
     </div>
 </body>
