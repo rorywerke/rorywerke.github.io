@@ -92,8 +92,11 @@
             align-self: center;
         }
         .fullscreen-image.landscape {
-            align-self: flex-start;
-            margin-left: 5vw;
+            align-self: center;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            max-width: 70%;
         }
         .image-details {
             position: absolute;
@@ -122,6 +125,20 @@
     <script>
         let images = [];
         let currentIndex = 0;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            images = Array.from(document.querySelectorAll(".gallery img")).map((img, index) => {
+                return {
+                    src: img.src,
+                    title: img.alt,
+                    lens: "50mm f/1.8",
+                    body: "Canon EOS R5",
+                    notes: "Example notes",
+                    aspect: img.naturalWidth > img.naturalHeight ? 'landscape' : 'portrait',
+                    index: index
+                };
+            });
+        });
 
         function openFullscreen(imgSrc, title, lens, body, notes, index, aspect) {
             const img = document.getElementById('fullscreenImg');
@@ -160,12 +177,10 @@
 <body>
     <header>rory.works</header>
     <div class="gallery-container">
-        <div class="subheader">build in progress</div>
+        <div class="subheader">subheader zero</div>
         <div class="gallery">
-            <img src="./images/463C0464.JPG" alt="Details about this image." onclick="openFullscreen(this.src, 'Placeholder Title', '50mm f/1.8', 'Canon EOS R5', 'Example notes', 0, 'landscape')">
-            <img src="./images/463C0299.JPG" alt="Details about this image." onclick="openFullscreen(this.src, 'Placeholder Title', '85mm f/1.4', 'Sony A7R IV', 'Example notes', 1, 'portrait')">
-            <div class="placeholder" onclick="openFullscreen('', 'Placeholder Title', '35mm f/2', 'Leica M10', 'Example notes', 2, 'landscape')">Placeholder</div>
-            <div class="placeholder" onclick="openFullscreen('', 'Placeholder Title', '24mm f/1.4', 'Nikon Z7', 'Example notes', 3, 'square')">Placeholder</div>
+            <img src="./images/463C0464.JPG" alt="Placeholder Title" onclick="openFullscreen(this.src, 'Placeholder Title', '50mm f/1.8', 'Canon EOS R5', 'Example notes', 0, 'landscape')">
+            <img src="./images/463C0299.JPG" alt="Placeholder Title" onclick="openFullscreen(this.src, 'Placeholder Title', '85mm f/1.4', 'Sony A7R IV', 'Example notes', 1, 'portrait')">
         </div>
     </div>
     <div id="fullscreenOverlay" class="fullscreen-overlay">
