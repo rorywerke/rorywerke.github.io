@@ -89,6 +89,11 @@
         .fullscreen-image {
             max-width: 90%;
             max-height: 90%;
+            align-self: center;
+        }
+        .fullscreen-image.landscape {
+            align-self: flex-start;
+            margin-left: 5vw;
         }
         .image-details {
             position: absolute;
@@ -121,8 +126,10 @@
         function openFullscreen(imgSrc, title, lens, body, notes, index, aspect) {
             const img = document.getElementById('fullscreenImg');
             img.src = imgSrc;
-            img.style.objectFit = 'contain';
-            img.style.alignSelf = aspect === 'portrait' ? 'center' : 'flex-start';
+            img.classList.remove('landscape');
+            if (aspect === 'landscape') {
+                img.classList.add('landscape');
+            }
             
             document.getElementById('imageDetails').innerHTML = `
                 <h3>${title}</h3>
@@ -132,6 +139,17 @@
             `;
             document.getElementById('fullscreenOverlay').style.display = 'flex';
             currentIndex = index;
+        }
+
+        function navigateImage(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) {
+                currentIndex = images.length - 1;
+            } else if (currentIndex >= images.length) {
+                currentIndex = 0;
+            }
+            let imgData = images[currentIndex];
+            openFullscreen(imgData.src, imgData.title, imgData.lens, imgData.body, imgData.notes, currentIndex, imgData.aspect);
         }
 
         function closeFullscreen() {
