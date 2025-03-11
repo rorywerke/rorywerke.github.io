@@ -23,27 +23,40 @@
             font-family: 'Monofett', monospace;
             color: #ccc;
             padding: 60px 20px 40px;
-            font-size: 82.8px; /* Increased by 15% from 24px */
+            font-size: 82.8px;
             font-weight: 300;
             text-transform: lowercase;
             background: #222;
             margin: 0 auto;
         }
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 15px;
-            padding: 40px;
+        .gallery-container {
             max-width: 1200px;
             margin: auto;
+            padding: 40px;
         }
-        .gallery img {
+        .subheader {
+            font-size: 24px;
+            font-weight: 300;
+            margin: 40px 0 20px;
+            color: #bbb;
+            text-transform: lowercase;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        .gallery img, .placeholder {
             width: 100%;
-            height: auto;
+            height: 200px;
             object-fit: cover;
             border: 3px solid black;
-            box-shadow: none;
-            transition: transform 0.3s ease;
+            background-color: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 14px;
         }
         .gallery img:hover {
             transform: scale(1.03);
@@ -52,9 +65,34 @@
 </head>
 <body>
     <header>rory.works</header>
-    <div class="gallery">
-        <img src="./images/463C0464.JPG" alt="my photo">
-        <!-- Add more images as needed -->
+    <div class="gallery-container">
+        <div class="gallery">
+            <img src="./images/463C0464.JPG" alt="my photo">
+            <div class="placeholder">placeholder</div>
+            <div class="placeholder">placeholder</div>
+            <div class="placeholder">placeholder</div>
+        </div>
+        <div class="subheader">subheader one</div>
+        <div class="gallery">
+            <div class="placeholder">placeholder</div>
+            <div class="placeholder">placeholder</div>
+            <div class="placeholder">placeholder</div>
+            <div class="placeholder">placeholder</div>
+        </div>
+        <div class="subheader">subheader two</div>
+        <div class="gallery">
+            <div class="placeholder">placeholder</div>
+            <div class="placeholder">placeholder</div>
+            <div class="placeholder">placeholder</div>
+            <div class="placeholder">placeholder</div>
+        </div>
+        <div class="subheader">subheader three</div>
+        <div class="gallery">
+            <div class="placeholder">placeholder</div>
+            <div class="placeholder">placeholder</div>
+            <div class="placeholder">placeholder</div>
+            <div class="placeholder">placeholder</div>
+        </div>
     </div>
 </body>
 </html>
