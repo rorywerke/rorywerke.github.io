@@ -2,68 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>rory.works</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Monofett&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Akzidenz-Grotesk:wght@400;600&display=swap');
         
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            font-weight: 300;
+            font-family: 'Akzidenz-Grotesk', sans-serif;
+            font-weight: 400;
             margin: 0;
-            padding: 20px;
-            background-color: #e8e4d9;
+            padding: 0;
+            background-color: #f5f3ee;
             color: #222;
             text-align: center;
-            border: 15px solid #d6d1c4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             min-height: 100vh;
-            box-sizing: border-box;
         }
         header {
             font-family: 'Monofett', monospace;
-            color: #222;
-            padding: 60px 20px 40px;
-            font-size: 82.8px;
+            font-size: 10vw;
             font-weight: 300;
             text-transform: lowercase;
-            background: #e8e4d9;
-            margin: 0 auto;
+            margin-bottom: 40px;
         }
         .gallery-container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 40px;
-        }
-        .subheader {
-            font-family: 'Akzidenz-Grotesk', sans-serif;
-            font-size: 24px;
-            font-weight: 300;
-            margin: 40px 0 20px;
-            color: #444;
-            text-transform: lowercase;
-        }
-        .gallery {
+            max-width: 1600px;
+            width: 90%;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
-            position: relative;
+            padding: 20px 0;
         }
-        .gallery img, .placeholder {
+        .gallery img {
             width: 100%;
-            height: 200px;
+            height: auto;
             object-fit: cover;
-            border: 6px solid #b8b2a5;
-            background-color: #d6d1c4;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #777;
-            font-size: 14px;
+            border: 5px solid #222;
             cursor: pointer;
         }
         .gallery img:hover {
-            transform: scale(1.03);
+            opacity: 0.8;
         }
         .fullscreen-overlay {
             display: none;
@@ -72,53 +54,78 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: #e8e4d9;
+            background-color: #f5f3ee;
             justify-content: center;
             align-items: center;
             padding: 5vw;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
         }
         .fullscreen-container {
             position: relative;
+            width: 100%;
+            height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
-            height: 100%;
+            flex-direction: column;
         }
         .fullscreen-image {
-            max-width: 90%;
-            max-height: 90%;
-            align-self: center;
+            max-width: 90vw;
+            max-height: 75vh;
         }
         .fullscreen-image.landscape {
-            align-self: center;
-            justify-self: flex-start;
-            margin-left: 5vw;
-            max-width: 70vw;
+            align-self: flex-start;
+            max-width: 85vw;
+            margin: auto;
         }
         .image-details {
-            position: absolute;
-            bottom: 5vw;
-            right: 5vw;
-            background: none;
-            color: #222;
             text-align: right;
-            font-family: 'Akzidenz-Grotesk', sans-serif;
+            font-size: 3vw;
+            line-height: 1.2;
+            margin-top: 10px;
+        }
+        .image-details h3 {
+            font-weight: 600;
+            font-size: 4vw;
+            margin-bottom: 5px;
         }
         .nav-buttons {
             position: absolute;
             top: 5vw;
             right: 5vw;
             display: flex;
-            gap: 15px;
+            gap: 10px;
         }
         .nav-button {
             background: none;
             border: none;
             cursor: pointer;
-            font-size: 24px;
+            font-size: 6vw;
             color: #222;
+        }
+        @media (max-width: 768px) {
+            .gallery-container {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+            }
+            .fullscreen-image {
+                max-width: 95vw;
+                max-height: 70vh;
+            }
+            .fullscreen-image.landscape {
+                max-width: 90vw;
+            }
+            .image-details {
+                font-size: 4vw;
+            }
+            .image-details h3 {
+                font-size: 5vw;
+            }
+            .nav-button {
+                font-size: 8vw;
+            }
         }
     </style>
     <script>
@@ -149,9 +156,9 @@
             
             document.getElementById('imageDetails').innerHTML = `
                 <h3>${title}</h3>
-                <p><span>lens:</span> ${lens}</p>
-                <p><span>body:</span> ${body}</p>
-                <p><span>notes:</span> ${notes}</p>
+                <p>lens: ${lens}</p>
+                <p>body: ${body}</p>
+                <p>notes: ${notes}</p>
             `;
             document.getElementById('fullscreenOverlay').style.display = 'flex';
             currentIndex = index;
@@ -176,11 +183,8 @@
 <body>
     <header>rory.works</header>
     <div class="gallery-container">
-        <div class="subheader">subheader zero</div>
-        <div class="gallery">
-            <img src="./images/463C0464.JPG" alt="Placeholder Title" onclick="openFullscreen(this.src, 'Placeholder Title', '50mm f/1.8', 'Canon EOS R5', 'Example notes', 0, 'landscape')">
-            <img src="./images/463C0299.JPG" alt="Placeholder Title" onclick="openFullscreen(this.src, 'Placeholder Title', '85mm f/1.4', 'Sony A7R IV', 'Example notes', 1, 'portrait')">
-        </div>
+        <img src="./images/463C0464.JPG" alt="Placeholder Title" onclick="openFullscreen(this.src, 'Placeholder Title', '50mm f/1.8', 'Canon EOS R5', 'Example notes', 0, 'landscape')">
+        <img src="./images/463C0299.JPG" alt="Placeholder Title" onclick="openFullscreen(this.src, 'Placeholder Title', '85mm f/1.4', 'Sony A7R IV', 'Example notes', 1, 'portrait')">
     </div>
     <div id="fullscreenOverlay" class="fullscreen-overlay">
         <div class="fullscreen-container">
