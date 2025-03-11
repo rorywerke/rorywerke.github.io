@@ -151,26 +151,25 @@
             document.getElementById('fullscreenOverlay').style.display = 'none';
             document.getElementById('imageDetails').style.display = 'none';
         }
-
-        function navigateImage(direction) {
-            currentIndex += direction;
-            if (currentIndex < 0) {
-                currentIndex = images.length - 1;
-            } else if (currentIndex >= images.length) {
-                currentIndex = 0;
-            }
-            openFullscreen(images[currentIndex].src, images[currentIndex].title, images[currentIndex].lens, images[currentIndex].body, images[currentIndex].notes, currentIndex);
-        }
     </script>
 </head>
 <body>
     <header>rory.works</header>
+    <div class="gallery-container">
+        <div class="subheader">subheader zero</div>
+        <div class="gallery">
+            <img src="./images/463C0464.JPG" alt="Details about this image." onclick="openFullscreen(this.src, 'Placeholder Title', '50mm f/1.8', 'Canon EOS R5', 'Example notes', 0)">
+            <div class="placeholder">Placeholder</div>
+            <div class="placeholder">Placeholder</div>
+            <div class="placeholder">Placeholder</div>
+        </div>
+    </div>
     <div id="fullscreenOverlay" class="fullscreen-overlay">
         <div class="fullscreen-container">
             <button class="nav-button prev-button" onclick="navigateImage(-1); event.stopPropagation();">&#10094;</button>
             <img id="fullscreenImg" class="fullscreen-image">
             <button class="nav-button next-button" onclick="navigateImage(1); event.stopPropagation();">&#10095;</button>
-            <div id="imageDetails" class="image-details"></div>
+            <div id="imageDetails" class="image-details">Image details placeholder</div>
         </div>
     </div>
 </body>
