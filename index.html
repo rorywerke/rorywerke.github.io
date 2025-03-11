@@ -84,7 +84,7 @@
         .image-details {
             position: fixed;
             bottom: 20px;
-            right: 20px;
+            left: calc(50% + 300px);
             background: #e8e4d9;
             color: #222;
             padding: 15px;
@@ -110,6 +110,7 @@
 <body>
     <header>rory.works</header>
     <div class="gallery-container">
+        <div class="subheader">subheader zero</div>
         <div class="gallery">
             <img src="./images/463C0464.JPG" alt="my photo" onclick="openFullscreen(this.src, 'Details about this image.')">
             <img src="./images/placeholder.jpg" alt="placeholder" onclick="openFullscreen(this.src, 'Details about this placeholder.')">
