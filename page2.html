@@ -1,1 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placeholder 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 3em;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .gallery img {
+            max-width: 100%;
+            height: auto;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        function openFullscreen(img) {
+            const fullscreenDiv = document.createElement('div');
+            fullscreenDiv.style.position = 'fixed';
+            fullscreenDiv.style.top = '0';
+            fullscreenDiv.style.left = '0';
+            fullscreenDiv.style.width = '100%';
+            fullscreenDiv.style.height = '100%';
+            fullscreenDiv.style.background = 'rgba(0, 0, 0, 0.9)';
+            fullscreenDiv.style.display = 'flex';
+            fullscreenDiv.style.justifyContent = 'center';
+            fullscreenDiv.style.alignItems = 'center';
+            fullscreenDiv.style.zIndex = '1000';
+            
+            const fullscreenImg = document.createElement('img');
+            fullscreenImg.src = img.src;
+            fullscreenImg.style.maxWidth = '90%';
+            fullscreenImg.style.maxHeight = '90%';
+            fullscreenImg.style.borderRadius = '10px';
+            
+            fullscreenDiv.appendChild(fullscreenImg);
+            fullscreenDiv.onclick = () => document.body.removeChild(fullscreenDiv);
+            
+            document.body.appendChild(fullscreenDiv);
+        }
+    </script>
+</head>
+<body>
+    <h1 onclick="location.href='index.html'">rory.works</h1>
+    <div class="container">
+        <h2>Placeholder 2</h2>
+        <p>This is the description for Placeholder 2. Customize this text as needed.</p>
+        <div class="gallery">
+            <img src="images/sample4.jpg" alt="Sample Image 4" onclick="openFullscreen(this)">
+            <img src="images/sample5.jpg" alt="Sample Image 5" onclick="openFullscreen(this)">
+            <img src="images/sample6.jpg" alt="Sample Image 6" onclick="openFullscreen(this)">
+        </div>
+    </div>
+</body>
+</html>
 
