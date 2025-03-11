@@ -39,7 +39,41 @@
             cursor: pointer;
             margin-bottom: 10px;
         }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
     </style>
+    <script>
+        function openFullscreen(img) {
+            const fullscreenDiv = document.createElement('div');
+            fullscreenDiv.style.position = 'fixed';
+            fullscreenDiv.style.top = '0';
+            fullscreenDiv.style.left = '0';
+            fullscreenDiv.style.width = '100%';
+            fullscreenDiv.style.height = '100%';
+            fullscreenDiv.style.background = 'rgba(0, 0, 0, 0.9)';
+            fullscreenDiv.style.display = 'flex';
+            fullscreenDiv.style.justifyContent = 'center';
+            fullscreenDiv.style.alignItems = 'center';
+            fullscreenDiv.style.zIndex = '1000';
+            
+            const fullscreenImg = document.createElement('img');
+            fullscreenImg.src = img.src;
+            fullscreenImg.style.maxWidth = '90%';
+            fullscreenImg.style.maxHeight = '90%';
+            fullscreenImg.style.borderRadius = '10px';
+            
+            fullscreenDiv.appendChild(fullscreenImg);
+            fullscreenDiv.onclick = () => document.body.removeChild(fullscreenDiv);
+            
+            document.body.appendChild(fullscreenDiv);
+        }
+    </script>
 </head>
 <body>
     <h1>rory.works</h1>
@@ -49,6 +83,27 @@
         <button onclick="location.href='page3.html'">Placeholder 3</button>
         <button onclick="location.href='page4.html'">Placeholder 4</button>
         <button onclick="location.href='page5.html'">Placeholder 5</button>
+    </div>
+</body>
+</html>
+
+<!-- Template for individual pages -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Title</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Page Title</h1>
+        <p>Placeholder text for description or context.</p>
+        <div class="gallery">
+            <img src="images/sample1.jpg" alt="Sample Image 1" onclick="openFullscreen(this)">
+            <img src="images/sample2.jpg" alt="Sample Image 2" onclick="openFullscreen(this)">
+            <img src="images/sample3.jpg" alt="Sample Image 3" onclick="openFullscreen(this)">
+        </div>
     </div>
 </body>
 </html>
