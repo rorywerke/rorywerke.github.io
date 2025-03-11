@@ -5,47 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>rory.works</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Monofett&display=swap');
+        
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             font-weight: 300;
             margin: 0;
-            padding: 0;
-            background-color: #121212;
+            padding: 20px;
+            background-color: #222;
             color: #ccc;
             text-align: center;
+            border: 10px solid white;
+            min-height: 100vh;
+            box-sizing: border-box;
         }
         header {
-            color: #bbb;
-            padding: 80px 20px 50px;
-            font-size: 24px;
+            font-family: 'Monofett', monospace;
+            color: #ccc;
+            padding: 60px 20px 40px;
+            font-size: 27.6px; /* Increased by 15% from 24px */
             font-weight: 300;
             text-transform: lowercase;
+            background: #222;
+            margin: 0 auto;
         }
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 60px;
+            gap: 15px;
+            padding: 40px;
             max-width: 1200px;
             margin: auto;
-            background: #0a0a0a;
-            box-shadow: 0px 0px 50px rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            border-radius: 10px;
         }
         .gallery img {
             width: 100%;
             height: auto;
             object-fit: cover;
-            border: 5px solid #222;
-            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background: #000;
-            padding: 5px;
+            border: 3px solid black;
+            box-shadow: none;
+            transition: transform 0.3s ease;
         }
         .gallery img:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.4);
+            transform: scale(1.03);
         }
     </style>
 </head>
