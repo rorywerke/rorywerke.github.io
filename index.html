@@ -76,16 +76,18 @@
             justify-content: center;
             align-items: center;
         }
+        .fullscreen-container {
+            position: relative;
+        }
         .fullscreen-image {
             max-width: 80%;
             max-height: 80%;
             border: 6px solid #b8b2a5;
-            position: relative;
         }
         .image-details {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
+            position: absolute;
+            bottom: 0;
+            left: calc(100% + 20px);
             background: #e8e4d9;
             color: #222;
             padding: 15px;
@@ -101,13 +103,13 @@
             background: #e8e4d9;
             border: 3px solid #b8b2a5;
             color: #222;
-            padding: 10px 20px;
+            padding: 10px 15px;
             font-size: 24px;
             cursor: pointer;
             user-select: none;
         }
-        .prev-button { left: 20px; }
-        .next-button { right: 20px; }
+        .prev-button { left: 10%; }
+        .next-button { right: 10%; }
     </style>
     <script>
         let images = [];
@@ -155,10 +157,12 @@
         </div>
     </div>
     <div id="fullscreenOverlay" class="fullscreen-overlay">
-        <button class="nav-button prev-button" onclick="navigateImage(-1); event.stopPropagation();">&#10094;</button>
-        <img id="fullscreenImg" class="fullscreen-image">
-        <button class="nav-button next-button" onclick="navigateImage(1); event.stopPropagation();">&#10095;</button>
-        <div id="imageDetails" class="image-details">Image details placeholder</div>
+        <div class="fullscreen-container">
+            <button class="nav-button prev-button" onclick="navigateImage(-1); event.stopPropagation();">&#10094;</button>
+            <img id="fullscreenImg" class="fullscreen-image">
+            <button class="nav-button next-button" onclick="navigateImage(1); event.stopPropagation();">&#10095;</button>
+            <div id="imageDetails" class="image-details">Image details placeholder</div>
+        </div>
     </div>
 </body>
 </html>
