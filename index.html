@@ -99,22 +99,6 @@
             text-align: right;
             font-family: 'Akzidenz-Grotesk', sans-serif;
         }
-        .image-details h3 {
-            font-weight: 600;
-            font-size: 18px;
-            margin: 0 0 10px;
-            color: #333;
-        }
-        .image-details p {
-            font-weight: 400;
-            font-size: 14px;
-            margin: 5px 0;
-            color: #666;
-        }
-        .image-details span {
-            font-weight: 600;
-            color: #444;
-        }
         .nav-buttons {
             position: absolute;
             top: 5vw;
@@ -123,13 +107,11 @@
             gap: 15px;
         }
         .nav-button {
-            background: #222;
-            color: #e8e4d9;
+            background: none;
             border: none;
-            padding: 10px 15px;
-            font-size: 16px;
             cursor: pointer;
-            font-family: 'Akzidenz-Grotesk', sans-serif;
+            font-size: 24px;
+            color: #222;
         }
     </style>
     <script>
@@ -163,7 +145,7 @@
         <div class="subheader">subheader zero</div>
         <div class="gallery">
             <img src="./images/463C0464.JPG" alt="Details about this image." onclick="openFullscreen(this.src, 'Placeholder Title', '50mm f/1.8', 'Canon EOS R5', 'Example notes', 0, 'landscape')">
-            <div class="placeholder" onclick="openFullscreen('', 'Placeholder Title', '85mm f/1.4', 'Sony A7R IV', 'Example notes', 1, 'portrait')">Placeholder</div>
+            <img src="./images/463C0299.JPG" alt="Details about this image." onclick="openFullscreen(this.src, 'Placeholder Title', '85mm f/1.4', 'Sony A7R IV', 'Example notes', 1, 'portrait')">
             <div class="placeholder" onclick="openFullscreen('', 'Placeholder Title', '35mm f/2', 'Leica M10', 'Example notes', 2, 'landscape')">Placeholder</div>
             <div class="placeholder" onclick="openFullscreen('', 'Placeholder Title', '24mm f/1.4', 'Nikon Z7', 'Example notes', 3, 'square')">Placeholder</div>
         </div>
@@ -171,7 +153,9 @@
     <div id="fullscreenOverlay" class="fullscreen-overlay">
         <div class="fullscreen-container">
             <div class="nav-buttons">
-                <button class="nav-button" onclick="closeFullscreen()">Close</button>
+                <button class="nav-button" onclick="navigateImage(-1)">&#10094;</button>
+                <button class="nav-button" onclick="closeFullscreen()">&#10005;</button>
+                <button class="nav-button" onclick="navigateImage(1)">&#10095;</button>
             </div>
             <img id="fullscreenImg" class="fullscreen-image">
             <div id="imageDetails" class="image-details"></div>
